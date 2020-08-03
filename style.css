@@ -105,3 +105,20 @@ input[type="text"]:focus {
   color: #ff3c5f;
   margin-top: 10px;
 }
+
+/* ghost dance */
+.ghost-dance {
+  position: relative;
+  margin-top: 10px;
+  width: 100%;
+  display: none;
+}
+
+.gh-img {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  border-radius: 40px;
+  background: #10101b;
+  margin-bottom: 10px;
+}

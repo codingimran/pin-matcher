@@ -29,6 +29,9 @@ function submit() {
   } else {
     notifySuccess.style.display = "block";
     notifyError.style.display = "none";
+    document.querySelector("[data-submit-button]").disabled = false;
+    // document.querySelector("[data-submit-button]").style = "outline: none;";
+    document.querySelector(".action-left").style = "display: none;";
   }
   //if tow input is empty
   if (randomPinInput.value === "" && pinInput.value === "") {
@@ -42,8 +45,18 @@ function submit() {
     notifySuccess.style.display = "none";
     notifyError.style.display = "none";
   }
+  /****************
+   * eita korte gele try left a jhamela hoi.
+   */
+  //   else if (pinInput.value === "") {
+  //     alert("Opps.Please type a Pin");
+  //     notifySuccess.style.display = "none";
+  //     notifyError.style.display = "none";
+  //     // document.querySelector(".action-left-number").innerText = 3;
+  //   }
 }
 
+// type input number delete
 function back() {
   let inputNumber = pinInput.value;
   pinInput.value = inputNumber.substring(0, pinInput.value.length - 1);
@@ -56,6 +69,7 @@ function resetNI() {
   pinInput.value = "";
   document.querySelector(".action-left-number").innerText = 3;
   document.querySelector("[data-submit-button]").disabled = false;
+  document.querySelector(".action-left").style = "display: block;";
 }
 
 // action decrease

@@ -7,18 +7,17 @@ generatePinButton.addEventListener("click", () => {
   resetNI();
 });
 
-// // calculator section
+// pin typing section
 let pinInput = document.querySelector(".pinTypeInput");
-
 function insert(num) {
   pinInput.value = pinInput.value + num;
 }
-
+//clear all
 const clearAll = document.querySelector("[data-clear-all]");
 function cleanAll() {
   pinInput.value = "";
 }
-
+//submit button function
 function submit() {
   let notifyError = document.getElementById("notify-error");
   let notifySuccess = document.getElementById("notify-success");
@@ -29,9 +28,12 @@ function submit() {
   } else {
     notifySuccess.style.display = "block";
     notifyError.style.display = "none";
-    document.querySelector("[data-submit-button]").disabled = false;
-    // document.querySelector("[data-submit-button]").style = "outline: none;";
+    document.querySelector("[data-submit-button]").disabled = true;
     document.querySelector(".action-left").style = "display: none;";
+    document.querySelector(".ghost-dance").style = "display: block";
+    setTimeout(() => {
+      document.querySelector(".ghost-dance").style = "display: none";
+    }, 9000);
   }
   //if tow input is empty
   if (randomPinInput.value === "" && pinInput.value === "") {
@@ -39,21 +41,20 @@ function submit() {
     notifyError.style.display = "none";
   }
 
-  // if random pin input is empty
+  // if random & input pin input is empty
   if (randomPinInput.value === "") {
     alert("Opps.Please generate a Pin");
     notifySuccess.style.display = "none";
     notifyError.style.display = "none";
+  } else if (pinInput.value === "") {
+    alert("Opps.Please type a Pin");
+    notifySuccess.style.display = "none";
+    notifyError.style.display = "none";
+    let actionLeft = document.querySelector(".action-left-number").innerText;
+    actionLeft = parseInt(actionLeft);
+    document.querySelector(".action-left-number").innerText = actionLeft + 1;
+    document.querySelector(".action-left").style = "display: block;";
   }
-  /****************
-   * eita korte gele try left a jhamela hoi.
-   */
-  //   else if (pinInput.value === "") {
-  //     alert("Opps.Please type a Pin");
-  //     notifySuccess.style.display = "none";
-  //     notifyError.style.display = "none";
-  //     // document.querySelector(".action-left-number").innerText = 3;
-  //   }
 }
 
 // type input number delete
@@ -62,7 +63,7 @@ function back() {
   pinInput.value = inputNumber.substring(0, pinInput.value.length - 1);
 }
 
-// reset notification and type input
+// reset notification, type input , img, actionLeft , btn , input
 function resetNI() {
   document.getElementById("notify-error").style.display = "none";
   document.getElementById("notify-success").style.display = "none";
@@ -70,6 +71,7 @@ function resetNI() {
   document.querySelector(".action-left-number").innerText = 3;
   document.querySelector("[data-submit-button]").disabled = false;
   document.querySelector(".action-left").style = "display: block;";
+  document.querySelector(".ghost-dance").style = "display: none";
 }
 
 // action decrease
@@ -86,5 +88,7 @@ function acitonLeft() {
 }
 
 // input text center
-let inputCenterText = document.querySelector('[type="text"]');
-inputCenterText.style = "text-align: center;";
+let inputCenterText = document.querySelectorAll('[type="text"]');
+inputCenterText.forEach((element) => {
+  element.style = "text-align: center;";
+});
